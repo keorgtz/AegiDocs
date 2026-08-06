@@ -1,0 +1,82 @@
+<Window x:Class="AegiDocs.Recorder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AegiDocs Recorder" Height="640" Width="1060" MinHeight="520" MinWidth="840"
+        Background="{StaticResource PageBgBrush}"
+        FontFamily="{StaticResource FontMain}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TitlebarHeight}" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="{StaticResource StatusbarHeight}" />
+        </Grid.RowDefinitions>
+
+        <Border Background="{StaticResource WhiteBrush}" BorderBrush="{StaticResource GrayLineBrush}" BorderThickness="0,0,0,1">
+            <Grid Margin="16,0">
+                <TextBlock Text="AEGIDOCS" Style="{StaticResource HSectionTitle}" VerticalAlignment="Center" />
+                <TextBlock Text="RECORDER" Style="{StaticResource TLabel}" VerticalAlignment="Center" Margin="112,0,0,0" />
+                <Border HorizontalAlignment="Right" VerticalAlignment="Center" Background="{StaticResource EmBgBrush}" CornerRadius="{StaticResource RadiusMd}" Padding="8,4">
+                    <TextBlock Text="LISTO" Style="{StaticResource TMeta}" Foreground="{StaticResource EmBrush}" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource SidebarWidth}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="{StaticResource SidebarBgBrush}" BorderBrush="{StaticResource SidebarBorderBrush}" BorderThickness="0,0,1,0">
+                <StackPanel Margin="0,12,0,0">
+                    <TextBlock Text="PROYECTO" Style="{StaticResource TMeta}" Margin="20,0,0,8" />
+                    <Border Background="{StaticResource SidebarActiveBgBrush}" CornerRadius="{StaticResource RadiusMd}" Margin="{StaticResource MarginSidebarItem}" Padding="{StaticResource PaddingSidebarItem}">
+                        <TextBlock Text="Grabación nueva" FontSize="{StaticResource Fs13}" FontWeight="SemiBold" Foreground="{StaticResource SidebarActiveFgBrush}" />
+                    </Border>
+                    <Border CornerRadius="{StaticResource RadiusMd}" Margin="{StaticResource MarginSidebarItem}" Padding="{StaticResource PaddingSidebarItem}">
+                        <TextBlock Text="Tutoriales" FontSize="{StaticResource Fs13}" Foreground="{StaticResource Gray700Brush}" />
+                    </Border>
+                    <Border CornerRadius="{StaticResource RadiusMd}" Margin="{StaticResource MarginSidebarItem}" Padding="{StaticResource PaddingSidebarItem}">
+                        <TextBlock Text="Exportaciones" FontSize="{StaticResource Fs13}" Foreground="{StaticResource Gray700Brush}" />
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Column="1" Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock Text="NUEVA GRABACIÓN" Style="{StaticResource HModuleTitle}" />
+                    <TextBlock Text="Captura un flujo para convertirlo en pasos editables." Style="{StaticResource TBody}" Margin="0,4,0,0" />
+                </StackPanel>
+
+                <Border Grid.Row="2" Style="{StaticResource CardBase}" Padding="{StaticResource PaddingCard}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="PREPARAR GRABACIÓN" Style="{StaticResource TLabel}" />
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="440">
+                            <TextBlock Text="Aún no hay pasos" Style="{StaticResource HPageTitle}" TextAlignment="Center" />
+                            <TextBlock Text="El recorder guardará una captura y el punto de interacción por cada acción autorizada. La grabación se ejecutará localmente." Style="{StaticResource TBody}" TextAlignment="Center" TextWrapping="Wrap" Margin="0,8,0,20" />
+                            <Button Content="Iniciar grabación" IsEnabled="False" HorizontalAlignment="Center" Padding="{StaticResource PaddingButton}" Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource WhiteBrush}" BorderThickness="0" FontFamily="{StaticResource FontMain}" FontWeight="SemiBold" />
+                            <TextBlock Text="Disponible al completar el motor de captura." Style="{StaticResource TBodySm}" Foreground="{StaticResource GrayMutedBrush}" TextAlignment="Center" Margin="0,10,0,0" />
+                        </StackPanel>
+                        <Border Grid.Row="2" Background="{StaticResource GrayFootBrush}" CornerRadius="{StaticResource RadiusSm}" Padding="8,6">
+                            <TextBlock Text="PRIVACIDAD · Las capturas permanecen en este equipo hasta que decidas exportarlas o compartirlas." Style="{StaticResource TMeta}" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Border Grid.Row="2" Background="{StaticResource WhiteBrush}" BorderBrush="{StaticResource GrayLineBrush}" BorderThickness="0,1,0,0">
+            <TextBlock Text="● Local · Sin conexión" Style="{StaticResource TMeta}" VerticalAlignment="Center" Margin="16,0" Foreground="{StaticResource EmBrush}" />
+        </Border>
+    </Grid>
+</Window>

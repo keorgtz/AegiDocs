@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AegiDocs.Application/AegiDocs.Application.csproj" />
+    <Project Path="src/AegiDocs.Domain/AegiDocs.Domain.csproj" />
+    <Project Path="src/AegiDocs.Export/AegiDocs.Export.csproj" />
+    <Project Path="src/AegiDocs.Infrastructure.Storage/AegiDocs.Infrastructure.Storage.csproj" />
+    <Project Path="src/AegiDocs.Infrastructure.Windows/AegiDocs.Infrastructure.Windows.csproj" />
+    <Project Path="src/AegiDocs.Recorder/AegiDocs.Recorder.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AegiDocs.Application.Tests/AegiDocs.Application.Tests.csproj" />
+    <Project Path="tests/AegiDocs.Domain.Tests/AegiDocs.Domain.Tests.csproj" />
+    <Project Path="tests/AegiDocs.Export.Tests/AegiDocs.Export.Tests.csproj" />
+    <Project Path="tests/AegiDocs.Infrastructure.Storage.Tests/AegiDocs.Infrastructure.Storage.Tests.csproj" />
+    <Project Path="tests/AegiDocs.Infrastructure.Windows.IntegrationTests/AegiDocs.Infrastructure.Windows.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>AegiDocs.Export</AssemblyName>
+    <RootNamespace>AegiDocs.Export</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AegiDocs.Application\AegiDocs.Application.csproj" />
+    <ProjectReference Include="..\AegiDocs.Domain\AegiDocs.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <AssemblyName>AegiDocs.Infrastructure.Windows</AssemblyName>
+    <RootNamespace>AegiDocs.Infrastructure.Windows</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AegiDocs.Application\AegiDocs.Application.csproj" />
+    <ProjectReference Include="..\AegiDocs.Domain\AegiDocs.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
