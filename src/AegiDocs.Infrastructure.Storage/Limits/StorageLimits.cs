@@ -1,0 +1,11 @@
+namespace AegiDocs.Infrastructure.Storage.Limits;
+
+public enum StorageLimitStatus { Allowed, InvalidInput, ManifestTooLarge, InvalidJsonBudget, CollectionLimit, AssetLimit, ImageLimit, PathLimit, RecoveryLimit, TemporaryLimit, ArchiveUnsupported }
+public static class StorageLimits
+{
+    public const long MaximumManifestBytes = 8L * 1024 * 1024;
+    public const int MaximumJsonDepth = 64, MaximumStringLength = 16_384, MaximumTutorials = 500, MaximumSteps = 20_000, MaximumAnnotations = 200_000, MaximumAssets = 25_000, MaximumPathDepth = 4, MaximumPathLength = 180, MaximumRecoveryCount = 3, MaximumTemporaryCount = 32;
+    public const long MaximumAssetBytes = 32L * 1024 * 1024, MaximumTotalAssetBytes = 8L * 1024 * 1024 * 1024, MaximumDecodedPixels = 33_177_600;
+    public static StorageLimitStatus Validate(long manifestBytes, int jsonDepth, int stringLength, int tutorials, int steps, int annotations, int assets, long assetBytes, long totalAssetBytes, int width, int height, int pathDepth, int pathLength, int recovery, int temporary, bool archive) =>
+        manifestBytes < 0 || jsonDepth < 0 || stringLength < 0 || tutorials < 0 || steps < 0 || annotations < 0 || assets < 0 || assetBytes < 0 || totalAssetBytes < 0 || pathDepth < 0 || pathLength < 0 || recovery < 0 || temporary < 0 ? StorageLimitStatus.InvalidInput : archive ? StorageLimitStatus.ArchiveUnsupported : manifestBytes > MaximumManifestBytes ? StorageLimitStatus.ManifestTooLarge : jsonDepth > MaximumJsonDepth || stringLength > MaximumStringLength ? StorageLimitStatus.InvalidJsonBudget : tutorials > MaximumTutorials || steps > MaximumSteps || annotations > MaximumAnnotations ? StorageLimitStatus.CollectionLimit : assets > MaximumAssets || assetBytes > MaximumAssetBytes || totalAssetBytes > MaximumTotalAssetBytes ? StorageLimitStatus.AssetLimit : width <= 0 || height <= 0 || (long)width * height > MaximumDecodedPixels ? StorageLimitStatus.ImageLimit : pathDepth > MaximumPathDepth || pathLength > MaximumPathLength ? StorageLimitStatus.PathLimit : recovery > MaximumRecoveryCount ? StorageLimitStatus.RecoveryLimit : temporary > MaximumTemporaryCount ? StorageLimitStatus.TemporaryLimit : StorageLimitStatus.Allowed;
+}

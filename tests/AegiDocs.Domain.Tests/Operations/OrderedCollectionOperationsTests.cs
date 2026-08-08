@@ -140,8 +140,8 @@ public sealed class OrderedCollectionOperationsTests
             static item => item.Id));
         Assert.Throws<ArgumentException>(() => OrderedCollectionOperations.Remove(
             nullSource!,
-            nullSource[0]!.Id,
-            static item => item.Id));
+            duplicate.Id,
+            static item => item!.Id));
     }
 
     private sealed record StepItem(StepId Id, string Label);

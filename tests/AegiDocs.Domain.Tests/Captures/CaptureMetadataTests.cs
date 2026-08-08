@@ -17,8 +17,7 @@ public sealed class CaptureMetadataTests
             new PhysicalPixelSize(3840, 2160),
             new CaptureDpi(144d, 144d),
             new MonitorIdentifier("  display-technical-id  "),
-            capturedAt,
-            new WindowReference((nuint)42));
+            capturedAt);
 
         Assert.Equal(assetId, metadata.AssetId);
         Assert.Equal(3840, metadata.PixelSize.Width);
@@ -26,7 +25,6 @@ public sealed class CaptureMetadataTests
         Assert.Equal(144d, metadata.Dpi.Horizontal);
         Assert.Equal(144d, metadata.Dpi.Vertical);
         Assert.Equal("display-technical-id", metadata.MonitorIdentifier.Value);
-        Assert.Equal((nuint)42, metadata.WindowReference!.Value.Value);
         Assert.Equal(TimeSpan.Zero, metadata.CapturedAt.Offset);
         Assert.Equal(capturedAt, metadata.CapturedAt);
     }
@@ -63,15 +61,6 @@ public sealed class CaptureMetadataTests
     }
 
     [Fact]
-    public void WindowReferenceIsOptionalButRejectsZeroWhenPresent()
-    {
-        var metadata = Create(windowReference: null);
-
-        Assert.Null(metadata.WindowReference);
-        Assert.Throws<ArgumentOutOfRangeException>(() => new WindowReference(0));
-    }
-
-    [Fact]
     public void ConstructorRejectsDefaultTimestampEmptyAssetIdentifierAndMissingMonitorIdentifier()
     {
         Assert.Throws<ArgumentException>(() => new CaptureMetadata(
@@ -105,18 +94,11 @@ public sealed class CaptureMetadataTests
             .GetProperties(BindingFlags.Public | BindingFlags.Instance)
             .Select(property => property.Name)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var forbiddenNames = new[] { "WindowTitle", "ProcessName", "ProcessId", "Path", "FilePath", "UserName" };
+        var forbiddenNames = new[] { "Window", "WindowTitle", "ProcessName", "ProcessId", "Path", "FilePath", "UserName" };
 
         Assert.DoesNotContain(forbiddenNames, name => propertyNames.Contains(name));
         Assert.DoesNotContain(typeof(CaptureMetadata).GetProperties(), property => property.PropertyType == typeof(string));
-        Assert.DoesNotContain(typeof(WindowReference).GetProperties(), property => property.PropertyType == typeof(string));
+        Assert.DoesNotContain(typeof(CaptureMetadata).GetProperties(), property => property.PropertyType == typeof(IntPtr));
+        Assert.Null(typeof(CaptureMetadata).Assembly.GetType("AegiDocs.Domain.Captures.WindowReference"));
     }
-
-    private static CaptureMetadata Create(WindowReference? windowReference = default) => new(
-        AssetId.New(),
-        new PhysicalPixelSize(1920, 1080),
-        new CaptureDpi(96d, 96d),
-        new MonitorIdentifier("display-technical-id"),
-        new DateTimeOffset(2026, 8, 5, 12, 0, 0, TimeSpan.Zero),
-        windowReference);
 }

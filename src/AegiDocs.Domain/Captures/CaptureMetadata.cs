@@ -8,9 +8,8 @@ namespace AegiDocs.Domain.Captures;
 /// <remarks>
 /// This type deliberately excludes window titles, process names, process IDs,
 /// paths, and user-identifying information. The monitor identifier is a required
-/// technical display identifier supplied by the platform boundary. An optional
-/// window reference is an opaque native handle value, not an identity of a user
-/// or a description of window content.
+/// technical display identifier supplied by the platform boundary. Native window
+/// handles and other process-lifetime identifiers remain outside the domain.
 /// </remarks>
 public sealed record CaptureMetadata
 {
@@ -22,8 +21,7 @@ public sealed record CaptureMetadata
         PhysicalPixelSize pixelSize,
         CaptureDpi dpi,
         MonitorIdentifier monitorIdentifier,
-        DateTimeOffset capturedAt,
-        WindowReference? windowReference = null)
+        DateTimeOffset capturedAt)
     {
         if (assetId.Value == Guid.Empty)
         {
@@ -37,7 +35,6 @@ public sealed record CaptureMetadata
         Dpi = dpi;
         MonitorIdentifier = monitorIdentifier;
         CapturedAt = NormalizeUtc(capturedAt);
-        WindowReference = windowReference;
     }
 
     /// <summary>
@@ -64,11 +61,6 @@ public sealed record CaptureMetadata
     /// Gets the UTC instant at which the capture was acquired.
     /// </summary>
     public DateTimeOffset CapturedAt { get; }
-
-    /// <summary>
-    /// Gets an optional opaque native window-handle reference.
-    /// </summary>
-    public WindowReference? WindowReference { get; }
 
     private static DateTimeOffset NormalizeUtc(DateTimeOffset value)
     {

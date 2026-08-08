@@ -18,7 +18,7 @@
 - `Step`: captura, punto de interacción, título, descripción y anotaciones.
 - `Annotation`: rectángulo, flecha, texto, numeración o redacción.
 
-Las imágenes viven junto al archivo de proyecto dentro de un directorio administrado; el manifiesto JSON mantiene rutas relativas y versión de esquema.
+Las imágenes viven junto al archivo de proyecto dentro de un directorio administrado; el manifiesto JSON mantiene rutas relativas y versión de esquema. El árbol, límites y validación defensiva están definidos en [Layout físico `.aegidocs`](AegiDocs-Storage-Layout.md).
 
 ## Stack decidido
 
